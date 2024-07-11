@@ -33,11 +33,7 @@ function(get_alignof_type type result_var)
     # Look for the align_of<..., ##> in the compiler error output
     string(REGEX MATCH "align_of<.*,[ ]*([0-9]+)[ul ]*>" align_of_matched ${align_output})
 
-    if(align_of_matched)
-	set(${result_var} ${CMAKE_MATCH_1} PARENT_SCOPE)
-    else()
-	message(FATAL_ERROR "Unable to determine alignment of C++ type ${type} - no error text matching align_of<..., ##> in compiler output |${align_output}|")
-    endif()
+    message(FATAL_ERROR "Unable to determine alignment of C++ type ${type} - no error text matching align_of<..., ##> in compiler output |${align_output}|")
 endfunction()
 
 # This function will return a list of C++ types with unique alignment
